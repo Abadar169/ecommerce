@@ -1,5 +1,11 @@
 <?php
 
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
+use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,32 +23,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('home', function(){
-    $blogs = [
-        [
-            'title' => 'Blog Title 1',
-            'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
-            'status' => 'active'
-        ],
-        [
-            'title' => 'Blog Title 2',
-            'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
-            'status' => 'completed'
-        ],
-        [
-            'title' => 'Blog Title 3',
-            'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
-            'status' => 'active'
-        ]
-    ];
-    return view('home', compact('blogs'));
-});
+Route::get('home', [HomeController::class, 'index']);
 
-Route::get('about', function(){
-    return view('about');
-})->name('about');
+Route::get('about', [AboutController::class, 'index'])->name('about');
 
-Route::get('contact', function(){
-    return view('contact');
-});
+Route::get('contact', [ContactController::class, 'index']);
+
+Route::resource('blog', BlogController::class);
+
+Route::get('login', [LoginController::class, 'index'])->name('login');
+
+Route::post('login' , [LoginController::class, 'handleLogin'])->name('login.submit');
 
