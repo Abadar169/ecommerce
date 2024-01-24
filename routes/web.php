@@ -18,7 +18,21 @@ Route::get('/', function () {
 });
 
 Route::get('home', function(){
-    return view('home');
+    $blogs = [
+        [
+            'title' => 'Blog Title 1',
+            'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
+        ],
+        [
+            'title' => 'Blog Title 2',
+            'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
+        ],
+        [
+            'title' => 'Blog Title 3',
+            'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
+        ]
+    ];
+    return view('home', compact('blogs'));
 });
 
 Route::get('about', function(){
