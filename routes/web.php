@@ -18,11 +18,8 @@ Route::get('/', function () {
 });
 
 
-Route::get('about', function(){
-    return "<h1>Hello World</h1>";
-} )->name('about');
 
-Route::get('contact/{id}', function($id){
-    return "<h1>Hello World $id</h1>";
-} );
+Route::get('contact', function(){
+    return view('contact');
+});
 
