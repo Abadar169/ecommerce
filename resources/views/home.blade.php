@@ -8,14 +8,26 @@
 
         <div class="row mt-5">
             @foreach ($blogs as $blog)
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h2>{{$blog['title']}}</h2>
-                            <p> {{$blog['content']}} </p>
+                @if ($blog['status'] == 'active')
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h2>{{ $blog['title'] }}</h2>
+                                <p> {{ $blog['content'] }} </p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @else
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h2>{{ $blog['title'] }}</h2>
+                                <p> {{ $blog['content'] }} </p>
+                                <div class="btn-sm btn-warning">Pending</div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
             @endforeach
         </div>
 
